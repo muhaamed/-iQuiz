@@ -48,7 +48,13 @@
                             <outlet property="delegate" destination="FMR-0T-C0V" id="8Xr-HO-RGU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Yai-uC-Peo"/>
+                    <navigationItem key="navigationItem" id="Yai-uC-Peo">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="I8a-fp-A6B">
+                            <connections>
+                                <action selector="settingButton:" destination="FMR-0T-C0V" id="vPn-PG-bvw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J2X-IG-NYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

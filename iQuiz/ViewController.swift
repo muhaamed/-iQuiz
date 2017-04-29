@@ -9,7 +9,12 @@
 import UIKit
 
 class ViewController: UITableViewController {
+    
+    
+    @IBAction func settingButton(_ sender: UIBarButtonItem) {
+    }
     let subjects = ["Mathematics","Marvel Super Heroes","Science"]
+    let desc = ["adding and stuff like that","superman and stuff","nerdy stuff"]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -18,10 +23,11 @@ class ViewController: UITableViewController {
         return subjects.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         
-        cell?.textLabel?.text = subjects[indexPath.row]
-        return cell!
+        cell.textLabel?.text = subjects[indexPath.row]
+        cell.detailTextLabel?.text = desc[indexPath.row]
+        return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
@@ -29,6 +35,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
