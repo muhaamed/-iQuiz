@@ -12,6 +12,10 @@ class ViewController: UITableViewController {
     
     
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
+        let view = UIAlertController(title: "Settings", message: "Settings go here", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        view.addAction(defaultAction)
+        self.present(view, animated: true, completion: nil)
     }
     let subjects = ["Mathematics","Marvel Super Heroes","Science"]
     let desc = ["adding and stuff like that","superman and stuff","nerdy stuff"]
