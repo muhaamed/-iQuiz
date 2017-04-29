@@ -17,8 +17,10 @@ class ViewController: UITableViewController {
         view.addAction(defaultAction)
         self.present(view, animated: true, completion: nil)
     }
+    
     let subjects = ["Mathematics","Marvel Super Heroes","Science"]
     let desc = ["adding and stuff like that","superman and stuff","nerdy stuff"]
+    let iconsNames = ["Math.png","Marvel.png","Science.png"]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -28,14 +30,17 @@ class ViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        
+        cell.imageView?.image = UIImage(named: iconsNames[indexPath.row])
         cell.textLabel?.text = subjects[indexPath.row]
         cell.detailTextLabel?.text = desc[indexPath.row]
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
