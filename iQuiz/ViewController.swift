@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     
+    @IBOutlet weak var Question: UILabel!
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
         let view = UIAlertController(title: "Settings", message: "Settings go here", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -21,6 +22,16 @@ class ViewController: UITableViewController {
     let subjects = ["Mathematics","Marvel Super Heroes","Science"]
     let desc = ["adding and stuff like that","superman and stuff","nerdy stuff"]
     let iconsNames = ["Math.png","Marvel.png","Science.png"]
+    //var jsonArray:[Any] = ["gggggg"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        tableView.tableFooterView = UIView()
+        
+        
+    }// end of viedDidLoad
+
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -28,6 +39,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return subjects.count
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         cell.imageView?.image = UIImage(named: iconsNames[indexPath.row])
@@ -38,19 +50,56 @@ class ViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        
+        //let cell:UITableViewCell = tableView.cellForRow(at: indexPath) as! UITableViewCell
+        //Question.text = cell.textLabel?.text!
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
+        self.navigationController?.pushViewController(viewController!, animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        tableView.tableFooterView = UIView()
-    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    func getJsonFile() {
+//        let url = URL(string: "http://tednewardsandbox.site44.com/questions.json")
+//        let sessionConfiq = URLSessionConfiguration.default
+//        let session = URLSession(configuration: sessionConfiq)
+//        var myJson:[Any] = []
+//    
+//        DispatchQueue.global().async {
+//            let task = session.dataTask(with: url!) {(data, response, err) in
+//                if err != nil
+//                {
+//                    print ("ERROR")
+//                }else{
+//                    if let content = data{
+//                        do{
+//                             myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as! Array<Any>
+//                            //print (myJson[0])
+//                            //self.jsonArray = myJson
+//                            //print(self.jsonArray[0])
+//                            
+//                        }
+//                        catch{
+//                            
+//                        }
+//                    }
+//                }
+//                
+//            }
+//            
+//            task.resume()
+//            DispatchQueue.main.async {
+//                //self.jsonArray = myJson
+//            }
+//
+//        }
+//        
+//    }
 
 
 }
