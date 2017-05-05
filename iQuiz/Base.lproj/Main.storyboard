@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="-112" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--Question View Controller-->
         <scene sceneID="9uP-OC-HOe">
             <objects>
-                <viewController storyboardIdentifier="question" id="sw8-y9-rBE" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="question" id="sw8-y9-rBE" customClass="QuestionViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M1Y-UY-nv1"/>
                         <viewControllerLayoutGuide type="bottom" id="N4x-eJ-fhp"/>
@@ -71,12 +71,24 @@
                     <view key="view" contentMode="scaleToFill" id="9HC-ie-xo6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hi-UU-Yxh">
+                                <rect key="frame" x="16" y="323" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="4Hi-UU-Yxh" id="GLa-cA-ri6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTr-KZ-Rg7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="50"/>
+            <point key="canvasLocation" x="631.20000000000005" y="49.925037481259373"/>
         </scene>
     </scenes>
 </document>

@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     
-    @IBOutlet weak var Question: UILabel!
+   
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
         let view = UIAlertController(title: "Settings", message: "Settings go here", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -22,6 +22,7 @@ class ViewController: UITableViewController {
     let subjects = ["Mathematics","Marvel Super Heroes","Science"]
     let desc = ["adding and stuff like that","superman and stuff","nerdy stuff"]
     let iconsNames = ["Math.png","Marvel.png","Science.png"]
+    
     //var jsonArray:[Any] = ["gggggg"]
     
     override func viewDidLoad() {
@@ -50,8 +51,8 @@ class ViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        //let cell:UITableViewCell = tableView.cellForRow(at: indexPath) as! UITableViewCell
-        //Question.text = cell.textLabel?.text!
+        let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        QuestionViewController.cellName = (cell.textLabel?.text!)!
         let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
@@ -63,6 +64,8 @@ class ViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
 //    func getJsonFile() {
 //        let url = URL(string: "http://tednewardsandbox.site44.com/questions.json")
@@ -85,7 +88,7 @@ class ViewController: UITableViewController {
 //                            
 //                        }
 //                        catch{
-//                            
+//
 //                        }
 //                    }
 //                }
