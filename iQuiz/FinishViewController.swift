@@ -1,24 +1,18 @@
 //
-//  AnswerViewController.swift
+//  FinishViewController.swift
 //  iQuiz
 //
-//  Created by Muhaamed Drammeh on 5/5/17.
+//  Created by Muhaamed Drammeh on 5/6/17.
 //  Copyright © 2017 Muhaamed Drammeh. All rights reserved.
 //
 
 import UIKit
 
-class AnswerViewController: UIViewController {
-    
-    public static var fetchedQuestionsOnAnswerViewController = [Questions]()
-    @IBAction func nextButton(_ sender: UIButton) {
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
-        self.navigationController?.pushViewController(viewController!, animated: true)
-        //self.navigationController?.popToRootViewController(animated: false)
-    }
+class FinishViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationItem.hidesBackButton = true
+
         // Do any additional setup after loading the view.
     }
 
