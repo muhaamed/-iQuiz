@@ -133,10 +133,10 @@
             </objects>
             <point key="canvasLocation" x="661.60000000000002" y="780.35982008995506"/>
         </scene>
-        <!--View Controller-->
+        <!--Finish View Controller-->
         <scene sceneID="mgm-dw-Cio">
             <objects>
-                <viewController id="BlA-Wb-yDv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="finish" id="BlA-Wb-yDv" customClass="FinishViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jZ1-Lx-Lcm"/>
                         <viewControllerLayoutGuide type="bottom" id="kmW-MJ-SOB"/>
@@ -156,6 +156,9 @@
                                 <rect key="frame" x="167" y="318" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Finish"/>
+                                <connections>
+                                    <action selector="finishButton:" destination="BlA-Wb-yDv" eventType="touchUpInside" id="MOd-1Q-DjH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

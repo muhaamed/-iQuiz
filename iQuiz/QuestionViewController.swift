@@ -37,7 +37,7 @@ class QuestionViewController: UIViewController {
             }
         }
         label.text = fetchedQuestions[0].text
-        //print(fetchedQuestions[0].text)
+        print(fetchedQuestions.count)
         // Do any additional setup after loading the view.
     }
 

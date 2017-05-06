@@ -14,6 +14,15 @@ class AnswerViewController: UIViewController {
     @IBAction func nextButton(_ sender: UIButton) {
         let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
         self.navigationController?.pushViewController(viewController!, animated: true)
+//        if AnswerViewController.fetchedQuestionsOnAnswerViewController.count == 1{
+//            let viewController = storyboard?.instantiateViewController(withIdentifier: "finish")
+//            self.navigationController?.pushViewController(viewController!, animated: true)
+//        }
+//        else{
+//            let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
+//            self.navigationController?.pushViewController(viewController!, animated: true)
+//        }
+        
         //self.navigationController?.popToRootViewController(animated: false)
     }
     override func viewDidLoad() {

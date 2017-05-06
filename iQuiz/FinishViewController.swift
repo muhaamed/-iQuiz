@@ -10,6 +10,18 @@ import UIKit
 
 class FinishViewController: UIViewController {
 
+    @IBAction func finishButton(_ sender: UIButton) {
+        let warningAlert = UIAlertController(title: "Warning", message: "Are you sure you want to return to home page", preferredStyle: UIAlertControllerStyle.alert)
+        
+        warningAlert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (action: UIAlertAction!) in
+            self.navigationController?.popToRootViewController(animated: false)
+        }))
+        
+        warningAlert.addAction(UIAlertAction(title: "NO", style: .cancel, handler:nil))
+        
+        present(warningAlert, animated: true, completion: nil)
+        //self.navigationController?.popToRootViewController(animated: false)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

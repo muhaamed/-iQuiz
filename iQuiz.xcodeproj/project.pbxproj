@@ -107,11 +107,11 @@
 				933E5B6C1EB33105007F7CEA /* ViewController.swift */,
 				93BCEF071EBC1B7100298B33 /* QuestionViewController.swift */,
 				93DDA11F1EBD657A00FED249 /* AnswerViewController.swift */,
+				93DDA1211EBDF41700FED249 /* FinishViewController.swift */,
 				933E5B6E1EB33105007F7CEA /* Main.storyboard */,
 				933E5B711EB33105007F7CEA /* Assets.xcassets */,
 				933E5B731EB33105007F7CEA /* LaunchScreen.storyboard */,
 				933E5B761EB33105007F7CEA /* Info.plist */,
-				93DDA1211EBDF41700FED249 /* FinishViewController.swift */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
