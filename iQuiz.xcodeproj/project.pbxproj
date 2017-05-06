@@ -15,6 +15,7 @@
 		933E5B801EB33105007F7CEA /* iQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E5B7F1EB33105007F7CEA /* iQuizTests.swift */; };
 		933E5B8B1EB33105007F7CEA /* iQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E5B8A1EB33105007F7CEA /* iQuizUITests.swift */; };
 		93BCEF081EBC1B7100298B33 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BCEF071EBC1B7100298B33 /* QuestionViewController.swift */; };
+		93DDA1201EBD657A00FED249 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DDA11F1EBD657A00FED249 /* AnswerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		933E5B8A1EB33105007F7CEA /* iQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iQuizUITests.swift; sourceTree = "<group>"; };
 		933E5B8C1EB33105007F7CEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93BCEF071EBC1B7100298B33 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		93DDA11F1EBD657A00FED249 /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				933E5B6A1EB33105007F7CEA /* AppDelegate.swift */,
 				933E5B6C1EB33105007F7CEA /* ViewController.swift */,
 				93BCEF071EBC1B7100298B33 /* QuestionViewController.swift */,
+				93DDA11F1EBD657A00FED249 /* AnswerViewController.swift */,
 				933E5B6E1EB33105007F7CEA /* Main.storyboard */,
 				933E5B711EB33105007F7CEA /* Assets.xcassets */,
 				933E5B731EB33105007F7CEA /* LaunchScreen.storyboard */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93DDA1201EBD657A00FED249 /* AnswerViewController.swift in Sources */,
 				933E5B6D1EB33105007F7CEA /* ViewController.swift in Sources */,
 				933E5B6B1EB33105007F7CEA /* AppDelegate.swift in Sources */,
 				93BCEF081EBC1B7100298B33 /* QuestionViewController.swift in Sources */,

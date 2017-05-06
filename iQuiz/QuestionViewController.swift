@@ -9,7 +9,12 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
-
+    public static var fetchedQuizOnQuestionViewController = [Quiz]()
+    @IBAction func submitButton(_ sender: UIButton) {
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "answer")
+        self.navigationController?.pushViewController(viewController!, animated: true)
+        
+    }
     @IBOutlet weak var label: UILabel!
     public static var cellName:String = ""
     
