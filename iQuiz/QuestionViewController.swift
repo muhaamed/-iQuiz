@@ -17,14 +17,14 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var firstButton: UIButton!
     
     public static var arrayOfButton : [UIButton] = []
-    var clickedButton:String? = nil
+    public static var clickedButton:String? = nil
     @IBAction func answerOptions(_ sender: UIButton) {
         let title = sender.title(for: .normal)
         
         for i in QuestionViewController.arrayOfButton{
             if i.title(for: .normal) == title{
                 i.backgroundColor = UIColor.gray
-                clickedButton = i.title(for: .normal)
+                QuestionViewController.clickedButton = i.title(for: .normal)
             }else{
                 i.backgroundColor = UIColor.cyan
             }
@@ -39,7 +39,7 @@ class QuestionViewController: UIViewController {
     @IBAction func submitButton(_ sender: UIButton) {
         //print("lllllllllllllllll"+sender.backgroundColor!)
         
-        if clickedButton != nil{
+        if QuestionViewController.clickedButton != nil{
             AnswerViewController.fetchedQuestionsOnAnswerViewController = fetchedQuestions
             QuestionViewController.currentNumberOfQuestion = QuestionViewController.currentNumberOfQuestion - 1
             AnswerViewController.quizQuestion = fetchedQuestions

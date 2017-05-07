@@ -43,6 +43,7 @@ class AnswerViewController: UIViewController {
         var finalAnswerText = ""
         label.text = AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].text
         finalAnswerText = AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].answers[finalAnswerInt! - 1]
+        
         for i in 0...QuestionViewController.arrayOfButton.count - 1{
             //print (QuestionViewController.arrayOfButton.count)
             //print(arrayOfAnswerButtons.count)
@@ -51,7 +52,13 @@ class AnswerViewController: UIViewController {
                 arrayOfAnswerButtons[i].backgroundColor = UIColor.green
             }
         }
-        
+        if QuestionViewController.clickedButton != finalAnswerText{
+            for i in 0...QuestionViewController.arrayOfButton.count - 1{
+                if arrayOfAnswerButtons[i].title(for: .normal) == QuestionViewController.clickedButton{
+                    arrayOfAnswerButtons[i].backgroundColor = UIColor.red
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
