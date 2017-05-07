@@ -14,6 +14,12 @@ class FinishViewController: UIViewController {
         let warningAlert = UIAlertController(title: "Warning", message: "Are you sure you want to return to home page", preferredStyle: UIAlertControllerStyle.alert)
         
         warningAlert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (action: UIAlertAction!) in
+            QuestionViewController.arrayOfButton = []
+            QuestionViewController.numberOfQuestion = 0
+            QuestionViewController.currentNumberOfQuestion = 0
+            QuestionViewController.fetchedQuizOnQuestionViewController = []
+            AnswerViewController.quizQuestion = []
+            AnswerViewController.fetchedQuestionsOnAnswerViewController = []
             self.navigationController?.popToRootViewController(animated: false)
         }))
         
@@ -24,7 +30,7 @@ class FinishViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
     }
 

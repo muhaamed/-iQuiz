@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     var fetchedQuiz = [Quiz]()
+    //var numberOfQuestion:Int = 0
    
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
         let view = UIAlertController(title: "Settings", message: "Settings go here", preferredStyle: .alert)
@@ -28,6 +29,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getJsonFile()
+        
         // Do any additional setup after loading the view, typically from a nib.
         tableView.tableFooterView = UIView()
         
@@ -55,6 +57,15 @@ class ViewController: UITableViewController {
         let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
         QuestionViewController.cellName = (cell.textLabel?.text!)!
         QuestionViewController.fetchedQuizOnQuestionViewController = fetchedQuiz
+        for i in 0...fetchedQuiz.count-1 {
+            if fetchedQuiz[i].title == cell.textLabel?.text{
+                QuestionViewController.numberOfQuestion = fetchedQuiz[i].questions.count
+                QuestionViewController.currentNumberOfQuestion = fetchedQuiz[i].questions.count
+            }
+        }
+        //print(fetchedQuiz[])
+        //numberOfQuestion =
+        //QuestionViewController.numberOfQuestion1 = numberOfQuestion
         let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
         self.navigationController?.pushViewController(viewController!, animated: true)
     }

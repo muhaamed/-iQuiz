@@ -9,26 +9,49 @@
 import UIKit
 
 class AnswerViewController: UIViewController {
+    public static var quizQuestion = [Questions]()
+    @IBOutlet weak var fourthButton: UIButton!
+    @IBOutlet weak var thirdButton: UIButton!
+    @IBOutlet weak var secondButton: UIButton!
+    @IBOutlet weak var firstButton: UIButton!
+    @IBOutlet weak var label: UILabel!
+    
+    var arrayOfAnswerButtons : [UIButton] = []
     
     public static var fetchedQuestionsOnAnswerViewController = [Questions]()
     @IBAction func nextButton(_ sender: UIButton) {
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
-        self.navigationController?.pushViewController(viewController!, animated: true)
-//        if AnswerViewController.fetchedQuestionsOnAnswerViewController.count == 1{
-//            let viewController = storyboard?.instantiateViewController(withIdentifier: "finish")
-//            self.navigationController?.pushViewController(viewController!, animated: true)
-//        }
-//        else{
-//            let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
-//            self.navigationController?.pushViewController(viewController!, animated: true)
-//        }
-        
-        //self.navigationController?.popToRootViewController(animated: false)
+        if QuestionViewController.currentNumberOfQuestion == 0 {
+            let viewController = storyboard?.instantiateViewController(withIdentifier: "finish")
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }else{
+            let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.navigationItem.hidesBackButton = true
-        // Do any additional setup after loading the view.
+        self.navigationItem.hidesBackButton = true
+        arrayOfAnswerButtons = []
+        arrayOfAnswerButtons.append(firstButton)
+        arrayOfAnswerButtons.append(secondButton)
+        arrayOfAnswerButtons.append(thirdButton)
+        arrayOfAnswerButtons.append(fourthButton)
+
+        
+        let finalAnswerInt = Int (AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].answer)
+        var finalAnswerText = ""
+        label.text = AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].text
+        finalAnswerText = AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].answers[finalAnswerInt! - 1]
+        for i in 0...QuestionViewController.arrayOfButton.count - 1{
+            //print (QuestionViewController.arrayOfButton.count)
+            //print(arrayOfAnswerButtons.count)
+            arrayOfAnswerButtons[i].setTitle(QuestionViewController.arrayOfButton[i].title(for: .normal), for: .normal)
+            if arrayOfAnswerButtons[i].title(for: .normal) == finalAnswerText{
+                arrayOfAnswerButtons[i].backgroundColor = UIColor.green
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
