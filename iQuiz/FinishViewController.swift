@@ -9,8 +9,12 @@
 import UIKit
 
 class FinishViewController: UIViewController {
+    public static var numberOfMissedQuestions = 0
+    
+    @IBOutlet weak var label: UILabel!
 
     @IBAction func finishButton(_ sender: UIButton) {
+        FinishViewController.numberOfMissedQuestions = 0
         let warningAlert = UIAlertController(title: "Warning", message: "Are you sure you want to return to home page", preferredStyle: UIAlertControllerStyle.alert)
         
         warningAlert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (action: UIAlertAction!) in
@@ -30,6 +34,7 @@ class FinishViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        label.text = "You answered \(QuestionViewController.numberOfQuestion - FinishViewController.numberOfMissedQuestions) of \(QuestionViewController.numberOfQuestion) question correctly"
         self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
     }

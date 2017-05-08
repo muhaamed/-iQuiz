@@ -53,6 +53,7 @@ class AnswerViewController: UIViewController {
             }
         }
         if QuestionViewController.clickedButton != finalAnswerText{
+            FinishViewController.numberOfMissedQuestions = FinishViewController.numberOfMissedQuestions + 1
             for i in 0...QuestionViewController.arrayOfButton.count - 1{
                 if arrayOfAnswerButtons[i].title(for: .normal) == QuestionViewController.clickedButton{
                     arrayOfAnswerButtons[i].backgroundColor = UIColor.red
