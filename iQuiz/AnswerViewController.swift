@@ -37,7 +37,14 @@ class AnswerViewController: UIViewController {
         arrayOfAnswerButtons.append(secondButton)
         arrayOfAnswerButtons.append(thirdButton)
         arrayOfAnswerButtons.append(fourthButton)
-
+        
+        for i in arrayOfAnswerButtons{
+            i.backgroundColor = UIColor.white
+            i.layer.borderWidth = 1
+            i.layer.cornerRadius = 5
+            i.layer.borderColor = UIColor.gray.cgColor
+            i.setTitleColor(UIColor.black, for: .normal)
+        }
         
         let finalAnswerInt = Int (AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].answer)
         var finalAnswerText = ""
@@ -50,6 +57,7 @@ class AnswerViewController: UIViewController {
             arrayOfAnswerButtons[i].setTitle(QuestionViewController.arrayOfButton[i].title(for: .normal), for: .normal)
             if arrayOfAnswerButtons[i].title(for: .normal) == finalAnswerText{
                 arrayOfAnswerButtons[i].backgroundColor = UIColor.green
+                arrayOfAnswerButtons[i].setTitleColor(UIColor.white, for: .normal)
             }
         }
         if QuestionViewController.clickedButton != finalAnswerText{
@@ -57,10 +65,12 @@ class AnswerViewController: UIViewController {
             for i in 0...QuestionViewController.arrayOfButton.count - 1{
                 if arrayOfAnswerButtons[i].title(for: .normal) == QuestionViewController.clickedButton{
                     arrayOfAnswerButtons[i].backgroundColor = UIColor.red
+                    arrayOfAnswerButtons[i].setTitleColor(UIColor.white, for: .normal)
                 }
             }
         }
-    }
+        
+    }// end of viewDidLoad
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

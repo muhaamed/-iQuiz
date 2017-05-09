@@ -22,13 +22,19 @@ class ViewController: UITableViewController {
     
     let subjects = ["Mathematics","Marvel Super Heroes","Science"]
     let desc = ["adding and stuff like that","superman and stuff","nerdy stuff"]
-    let iconsNames = ["Math.png","Marvel.png","Science.png"]
+    let iconsNames = ["Science.png","Marvel.png","Math.png"]
     
-    //var jsonArray:[Any] = ["gggggg"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getJsonFile()
+        DispatchQueue.global().async {
+            self.getJsonFile()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }// end of queue
+        
+        
         
         // Do any additional setup after loading the view, typically from a nib.
         tableView.tableFooterView = UIView()
@@ -85,7 +91,7 @@ class ViewController: UITableViewController {
         let sessionConfiq = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfiq)
     
-        DispatchQueue.global().async {
+       // DispatchQueue.global().async {
             let task = session.dataTask(with: url!) {(data, response, err) in
                 if err != nil
                 {
@@ -102,9 +108,7 @@ class ViewController: UITableViewController {
                                 self.fetchedQuiz.append(Quiz(title: title, desc: desc, questions: questions))
                             }
                             self.tableView.reloadData()
-                            //print (self.fetchedQuiz[0].title)
-                            //self.jsonArray = myJson
-                            //print(self.jsonArray[0])
+                            
                             
                         }
                         catch{
@@ -116,11 +120,11 @@ class ViewController: UITableViewController {
             }
             
             task.resume()
-            DispatchQueue.main.async {
-                //self.jsonArray = myJson
-            }
+            //DispatchQueue.main.async {
+                //self.tableView.reloadData()
+            //}
 
-        }
+        //}//end of que
         
     }
 

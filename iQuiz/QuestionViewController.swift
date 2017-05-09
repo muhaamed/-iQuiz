@@ -10,6 +10,7 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
+    @IBOutlet weak var questionProgress: UILabel!
     
     @IBOutlet weak var fourthButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
@@ -23,10 +24,10 @@ class QuestionViewController: UIViewController {
         
         for i in QuestionViewController.arrayOfButton{
             if i.title(for: .normal) == title{
-                i.backgroundColor = UIColor.gray
+                i.backgroundColor = UIColor.lightGray
                 QuestionViewController.clickedButton = i.title(for: .normal)
             }else{
-                i.backgroundColor = UIColor.cyan
+                i.backgroundColor = UIColor.white
             }
         }
         
@@ -52,13 +53,8 @@ class QuestionViewController: UIViewController {
             present(warningAlert, animated: true, completion: nil)
         }
         
-//        AnswerViewController.fetchedQuestionsOnAnswerViewController = fetchedQuestions
-//        QuestionViewController.currentNumberOfQuestion = QuestionViewController.currentNumberOfQuestion - 1
-//        AnswerViewController.quizQuestion = fetchedQuestions
-//        let viewController = storyboard?.instantiateViewController(withIdentifier: "answer")
-//        self.navigationController?.pushViewController(viewController!, animated: true)
-        
-    }
+    } // end of submit button
+    
     @IBOutlet weak var label: UILabel!
     public static var cellName:String = ""
     
@@ -84,19 +80,55 @@ class QuestionViewController: UIViewController {
         QuestionViewController.arrayOfButton.append(thirdButton)
         QuestionViewController.arrayOfButton.append(fourthButton)
         label.text = fetchedQuestions[QuestionViewController.numberOfQuestion - QuestionViewController.currentNumberOfQuestion].text
+        label.backgroundColor = UIColor.white
+        questionProgress.text = "Question \(QuestionViewController.numberOfQuestion - QuestionViewController.currentNumberOfQuestion + 1) of \(QuestionViewController.numberOfQuestion)"
         //print(fetchedQuestions[QuestionViewController.numberOfQuestion - QuestionViewController.currentNumberOfQuestion].answers)
         for i in 0...fetchedQuestions[QuestionViewController.numberOfQuestion - QuestionViewController.currentNumberOfQuestion].answers.count - 1{
             QuestionViewController.arrayOfButton[i].setTitle(fetchedQuestions[QuestionViewController.numberOfQuestion - QuestionViewController.currentNumberOfQuestion].answers[i], for: .normal)
             //print(QuestionViewController.arrayOfButton[i].title(for: .normal)!)
         }
-    }
+        
+        // set the color and border of buttons 
+        for i in QuestionViewController.arrayOfButton{
+            i.backgroundColor = UIColor.white
+            i.layer.borderWidth = 1
+            i.layer.cornerRadius = 5
+            i.layer.borderColor = UIColor.gray.cgColor
+            i.setTitleColor(UIColor.black, for: .normal)
+        }
+        
+        // swipe gestures for the question scene 
+        //let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector (handleSwipes(sender: <#T##UISwipeGestureRecognizer#>))
+        
+        
+    }// end of viewDidLoad
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    // handling the swiping of scene
+    func handleSwipes(sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .left){
+            if QuestionViewController.clickedButton != nil{
+                AnswerViewController.fetchedQuestionsOnAnswerViewController = fetchedQuestions
+                QuestionViewController.currentNumberOfQuestion = QuestionViewController.currentNumberOfQuestion - 1
+                AnswerViewController.quizQuestion = fetchedQuestions
+                let viewController = storyboard?.instantiateViewController(withIdentifier: "answer")
+                self.navigationController?.pushViewController(viewController!, animated: true)
+            }else{
+                let warningAlert = UIAlertController(title: "Warning", message: "Please select an answer", preferredStyle: UIAlertControllerStyle.alert)
+                warningAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+                
+                present(warningAlert, animated: true, completion: nil)
+            }
 
+        }
+        if (sender.direction == .right){
+            self.navigationController?.popToRootViewController(animated: false)
+        }
+    } // end of handleSwipe function
 
 }
 
