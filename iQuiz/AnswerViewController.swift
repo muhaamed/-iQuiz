@@ -10,6 +10,7 @@ import UIKit
 
 class AnswerViewController: UIViewController {
     public static var quizQuestion = [Questions]()
+    @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var fourthButton: UIButton!
     @IBOutlet weak var thirdButton: UIButton!
     @IBOutlet weak var secondButton: UIButton!
@@ -49,6 +50,7 @@ class AnswerViewController: UIViewController {
         let finalAnswerInt = Int (AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].answer)
         var finalAnswerText = ""
         label.text = AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].text
+        label.backgroundColor = UIColor.white
         finalAnswerText = AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].answers[finalAnswerInt! - 1]
         
         for i in 0...QuestionViewController.arrayOfButton.count - 1{
@@ -69,6 +71,8 @@ class AnswerViewController: UIViewController {
                 }
             }
         }
+        QuestionViewController.clickedButton = nil
+        nextButton.layer.cornerRadius = 30
         
     }// end of viewDidLoad
 

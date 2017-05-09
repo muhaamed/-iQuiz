@@ -10,6 +10,7 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
+    @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var questionProgress: UILabel!
     
     @IBOutlet weak var fourthButton: UIButton!
@@ -38,8 +39,6 @@ class QuestionViewController: UIViewController {
     public static var fetchedQuizOnQuestionViewController = [Quiz]()
     var fetchedQuestions = [Questions]()
     @IBAction func submitButton(_ sender: UIButton) {
-        //print("lllllllllllllllll"+sender.backgroundColor!)
-        
         if QuestionViewController.clickedButton != nil{
             AnswerViewController.fetchedQuestionsOnAnswerViewController = fetchedQuestions
             QuestionViewController.currentNumberOfQuestion = QuestionViewController.currentNumberOfQuestion - 1
@@ -92,10 +91,13 @@ class QuestionViewController: UIViewController {
         for i in QuestionViewController.arrayOfButton{
             i.backgroundColor = UIColor.white
             i.layer.borderWidth = 1
-            i.layer.cornerRadius = 5
+            i.layer.cornerRadius = 10
             i.layer.borderColor = UIColor.gray.cgColor
             i.setTitleColor(UIColor.black, for: .normal)
         }
+        
+        // submit button rounded
+        submitButton.layer.cornerRadius = 30
         
         // swipe gestures for the question scene 
         //let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector (handleSwipes(sender: <#T##UISwipeGestureRecognizer#>))
