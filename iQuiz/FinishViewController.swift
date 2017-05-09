@@ -12,6 +12,7 @@ class FinishViewController: UIViewController {
     public static var numberOfMissedQuestions = 0
     
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var topLabel: UILabel!
 
     @IBAction func finishButton(_ sender: UIButton) {
         FinishViewController.numberOfMissedQuestions = 0
@@ -35,6 +36,20 @@ class FinishViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         label.text = "You answered \(QuestionViewController.numberOfQuestion - FinishViewController.numberOfMissedQuestions) of \(QuestionViewController.numberOfQuestion) question correctly"
+        
+        if FinishViewController.numberOfMissedQuestions == 0 {
+            topLabel.text = "Perfect!!!"
+        }
+        if QuestionViewController.numberOfQuestion == FinishViewController.numberOfMissedQuestions {
+            topLabel.text = "Stupid, Quit School bro"
+        }
+        if FinishViewController.numberOfMissedQuestions == 1 && QuestionViewController.numberOfQuestion != 1  {
+            topLabel.text = "AHH Almost"
+        }
+        if QuestionViewController.numberOfQuestion > 1 && FinishViewController.numberOfMissedQuestions > 1 && QuestionViewController.numberOfQuestion != FinishViewController.numberOfMissedQuestions{
+            topLabel.text = "Try Harder"
+        }
+        
         self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
     }
