@@ -71,11 +71,55 @@ class AnswerViewController: UIViewController {
                 }
             }
         }
+        // swipe gestures for the question scene
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector (handleSwipes))
+        leftSwipe.direction = .left
+        view.addGestureRecognizer(leftSwipe)
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector (handleSwipes))
+        rightSwipe.direction = .right
+        view.addGestureRecognizer(rightSwipe)
+
+        
         QuestionViewController.clickedButton = nil
         nextButton.layer.cornerRadius = 30
         
     }// end of viewDidLoad
 
+    func handleSwipes(sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .left){
+            if QuestionViewController.currentNumberOfQuestion == 0 {
+                let viewController = storyboard?.instantiateViewController(withIdentifier: "finish")
+                self.navigationController?.pushViewController(viewController!, animated: true)
+            }else{
+                let viewController = storyboard?.instantiateViewController(withIdentifier: "question")
+                self.navigationController?.pushViewController(viewController!, animated: true)
+            }
+        }
+        if (sender.direction == .right){
+            
+            FinishViewController.numberOfMissedQuestions = 0
+            let warningAlert = UIAlertController(title: "Warning", message: "Are you sure you want to return to home page", preferredStyle: UIAlertControllerStyle.alert)
+            
+            warningAlert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (action: UIAlertAction!) in
+                QuestionViewController.clickedButton = nil
+                QuestionViewController.arrayOfButton = []
+                QuestionViewController.numberOfQuestion = 0
+                QuestionViewController.currentNumberOfQuestion = 0
+                QuestionViewController.fetchedQuizOnQuestionViewController = []
+                AnswerViewController.quizQuestion = []
+                AnswerViewController.fetchedQuestionsOnAnswerViewController = []
+                self.navigationController?.popToRootViewController(animated: false)
+            }))
+            
+            warningAlert.addAction(UIAlertAction(title: "NO", style: .cancel, handler:nil))
+            
+            present(warningAlert, animated: true, completion: nil)
+            //self.navigationController?.popToRootViewController(animated: false)
+        }
+    } // end of handleSwipe function
+
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
