@@ -46,6 +46,7 @@ class AnswerViewController: UIViewController {
             i.layer.cornerRadius = 5
             i.layer.borderColor = UIColor.gray.cgColor
             i.setTitleColor(UIColor.black, for: .normal)
+            i.isEnabled = false
         }
         
         let finalAnswerInt = Int (AnswerViewController.quizQuestion[QuestionViewController.numberOfQuestion - (QuestionViewController.currentNumberOfQuestion + 1)].answer)
