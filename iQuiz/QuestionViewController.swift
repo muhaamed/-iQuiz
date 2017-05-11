@@ -61,6 +61,7 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
+        self.title = QuestionViewController.cellName
         //label.text = QuestionViewController.cellName
         QuestionViewController.arrayOfButton = []
         for subject in QuestionViewController.fetchedQuizOnQuestionViewController{

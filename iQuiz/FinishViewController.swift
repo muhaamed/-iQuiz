@@ -35,6 +35,7 @@ class FinishViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = QuestionViewController.cellName
         label.text = "You answered \(QuestionViewController.numberOfQuestion - FinishViewController.numberOfMissedQuestions) of \(QuestionViewController.numberOfQuestion) question correctly"
         
         if FinishViewController.numberOfMissedQuestions == 0 {
