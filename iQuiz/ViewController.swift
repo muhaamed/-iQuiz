@@ -26,7 +26,7 @@ class ViewController: UITableViewController {
             self.fetchedQuiz = []
             if urlText != ""{
                 self.getJsonFile(URLString: urlText)
-                //print ("wow \(urlText) player")
+                
             }
             
         })
@@ -35,11 +35,6 @@ class ViewController: UITableViewController {
         view.addAction(defaultAction)
         self.present(view, animated: true, completion: nil)
     }
-    
-    let subjects = ["Mathematics","Marvel Super Heroes","Science"]
-    let desc = ["adding and stuff like that","superman and stuff","nerdy stuff"]
-    let iconsNames = ["Science.png","Marvel.png","Math.png"]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +61,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        //cell.imageView?.image = UIImage(named: iconsNames[indexPath.row])
+        cell.imageView?.image = UIImage(named: "Questions.png")
         cell.textLabel?.text = fetchedQuiz[indexPath.row].title
         cell.detailTextLabel?.text = fetchedQuiz[indexPath.row].desc
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
