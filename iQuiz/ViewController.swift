@@ -13,9 +13,25 @@ class ViewController: UITableViewController {
     var fetchedQuiz = [Quiz]()
     //var numberOfQuestion:Int = 0
    
+    // button to fetech quizzes from a url provided
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
-        let view = UIAlertController(title: "Settings", message: "Settings go here", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let view = UIAlertController(title: "Settings", message: nil, preferredStyle: .alert)
+        
+        view.addTextField { (urlInput) in
+            urlInput.placeholder = "Enter URL"
+        }
+        
+        let defaultAction = UIAlertAction(title: "check now", style: .default, handler: { alert -> Void in
+            let urlText : String = view.textFields![0].text!
+            self.fetchedQuiz = []
+            if urlText != ""{
+                self.getJsonFile(URLString: urlText)
+                //print ("wow \(urlText) player")
+            }
+            
+        })
+        
+        
         view.addAction(defaultAction)
         self.present(view, animated: true, completion: nil)
     }
@@ -34,8 +50,6 @@ class ViewController: UITableViewController {
             }
         }// end of queue
         
-        
-        
         // Do any additional setup after loading the view, typically from a nib.
         tableView.tableFooterView = UIView()
         
@@ -52,7 +66,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cell.imageView?.image = UIImage(named: iconsNames[indexPath.row])
+        //cell.imageView?.image = UIImage(named: iconsNames[indexPath.row])
         cell.textLabel?.text = fetchedQuiz[indexPath.row].title
         cell.detailTextLabel?.text = fetchedQuiz[indexPath.row].desc
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -86,8 +100,8 @@ class ViewController: UITableViewController {
     
     
     
-    func getJsonFile() {
-        let url = URL(string: "http://tednewardsandbox.site44.com/questions.json")
+    func getJsonFile(URLString: String = "http://tednewardsandbox.site44.com/questions.json") {
+        let url = URL(string: URLString)
         let sessionConfiq = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfiq)
     
