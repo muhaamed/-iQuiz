@@ -27,9 +27,16 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.global().async {
             self.getJsonFile()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }// end of queue
+        
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
-        self.getJsonFile()
         tableView.tableFooterView = UIView()
         
         
