@@ -27,16 +27,9 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.global().async {
             self.getJsonFile()
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }// end of queue
-        
-        
-        
         // Do any additional setup after loading the view, typically from a nib.
+        self.getJsonFile()
         tableView.tableFooterView = UIView()
         
         
@@ -96,10 +89,36 @@ class ViewController: UITableViewController {
                 if err != nil
                 {
                     print ("ERROR")
+                    let localJsonFile = UserDefaults.standard
+                    
+                    if (localJsonFile.value(forKey: "localJsonFile") != nil){
+                        let jsonFile = localJsonFile.value(forKey: "localJsonFile") as! NSArray
+                        for eachQuizFromData in jsonFile {
+                            let eachQuiz = eachQuizFromData as! [String : Any]
+                            let title = eachQuiz["title"] as! String
+                            let desc = eachQuiz["desc"] as! String
+                            let questions : [Dictionary<String,Any>] = eachQuiz["questions"] as! Array
+                            self.fetchedQuiz.append(Quiz(title: title, desc: desc, questions: questions))
+                        }
+                        //print("reload")
+                        // do the async
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+
+                    }
+                    
+                    
                 }else{
                     if let content = data{
                         do{
                             let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
+                            
+                            // save data to local storage
+                            let localJsonFile = UserDefaults.standard
+                            localJsonFile.set(myJson, forKey: "localJsonFile")
+                            localJsonFile.synchronize()
+                            
                             print("grabbed data")
                             for eachQuizFromData in myJson {
                                 let eachQuiz = eachQuizFromData as! [String : Any]
@@ -126,16 +145,11 @@ class ViewController: UITableViewController {
             }
             
             task.resume()
-            //DispatchQueue.main.async {
-                //self.tableView.reloadData()
-            //}
-
-        //}//end of que
-        
     }
 
 
 }
+
 
 // DataClass
 class Quiz {
