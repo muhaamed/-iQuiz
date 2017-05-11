@@ -100,6 +100,7 @@ class ViewController: UITableViewController {
                     if let content = data{
                         do{
                             let myJson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSArray
+                            print("grabbed data")
                             for eachQuizFromData in myJson {
                                 let eachQuiz = eachQuizFromData as! [String : Any]
                                 let title = eachQuiz["title"] as! String
@@ -107,7 +108,12 @@ class ViewController: UITableViewController {
                                 let questions : [Dictionary<String,Any>] = eachQuiz["questions"] as! Array
                                 self.fetchedQuiz.append(Quiz(title: title, desc: desc, questions: questions))
                             }
-                            self.tableView.reloadData()
+                            print("reload")
+                            // do the async 
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                            
                             
                             
                         }
