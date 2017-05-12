@@ -22,7 +22,11 @@ class ViewController: UITableViewController {
         }
         
         let defaultAction = UIAlertAction(title: "check now", style: .default, handler: { alert -> Void in
-            let urlText : String = view.textFields![0].text!
+            var urlText : String = view.textFields![0].text!
+            if urlText == ""{
+                urlText = "ghjgjvnjnv"
+            }
+            print(urlText)
             self.fetchedQuiz = []
             if urlText != ""{
                 self.getJsonFile(URLString: urlText)
@@ -96,11 +100,16 @@ class ViewController: UITableViewController {
     
     
     func getJsonFile(URLString: String = "http://tednewardsandbox.site44.com/questions.json") {
-        let url = URL(string: URLString)
+        print("Method Called")
+        var url = URL(string: URLString)
         let sessionConfiq = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfiq)
-    
-       // DispatchQueue.global().async {
+        
+        // Error check for the inputted url from the settings button
+        if url == nil{
+            url = URL(string: "urlNotAppropriate")
+        }
+       // DispatchQueue.global().async
             let task = session.dataTask(with: url!) {(data, response, err) in
                 if err != nil
                 {
@@ -116,7 +125,7 @@ class ViewController: UITableViewController {
                             let questions : [Dictionary<String,Any>] = eachQuiz["questions"] as! Array
                             self.fetchedQuiz.append(Quiz(title: title, desc: desc, questions: questions))
                         }
-                        //print("reload")
+                        
                         // do the async
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
