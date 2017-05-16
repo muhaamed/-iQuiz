@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UITableViewController {
     
     var fetchedQuiz = [Quiz]()
-    //var numberOfQuestion:Int = 0
+    let refresh = UIRefreshControl()
+    let activityIndicator = UIActivityIndicatorView()
    
     // button to fetech quizzes from a url provided
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
@@ -42,6 +43,10 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refresh.attributedTitle = NSAttributedString(string: "Updating")
+        tableView.addSubview(refresh)
+        refresh.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        
         DispatchQueue.global().async {
             self.getJsonFile()
             DispatchQueue.main.async {
@@ -55,6 +60,13 @@ class ViewController: UITableViewController {
         
     }// end of viedDidLoad
 
+    func pullToRefresh(refreshControl: UIRefreshControl) {
+        self.fetchedQuiz = []
+        getJsonFile()
+        refreshControl.endRefreshing()
+        activityIndicator.stopAnimating()
+        
+    }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
