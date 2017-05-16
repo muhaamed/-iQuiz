@@ -12,7 +12,6 @@ class ViewController: UITableViewController {
     
     var fetchedQuiz = [Quiz]()
     let refresh = UIRefreshControl()
-    let activityIndicator = UIActivityIndicatorView()
    
     // button to fetech quizzes from a url provided
     @IBAction func settingButton(_ sender: UIBarButtonItem) {
@@ -64,7 +63,6 @@ class ViewController: UITableViewController {
         self.fetchedQuiz = []
         getJsonFile()
         refreshControl.endRefreshing()
-        activityIndicator.stopAnimating()
         
     }
     
